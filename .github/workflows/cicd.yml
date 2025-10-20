@@ -35,9 +35,9 @@ jobs:
 
       - name: Update deployment image
         run: |
-            sed -i '' "s|image: .*|image: $IMAGE_NAME:${{ env.ENVIRONMENT }}|" k8s/deployment.yaml
-            # update namespace
+            sed -i '' "s|image: .*|image: $IMAGE_NAME:${{ env.ENVIRONMENT }}|" k8s/deployment.yaml        
             sed -i '' "s|namespace: .*|namespace: ${{ env.ENVIRONMENT }}|" k8s/deployment.yaml
+            sed -i '' "s|namespace: .*|namespace: ${{ env.ENVIRONMENT }}|" k8s/service.yaml
 
       - name: Apply manifests to Kubernetes (optional)
         if: env.ENVIRONMENT != 'main'
