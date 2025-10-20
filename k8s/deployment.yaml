@@ -20,4 +20,4 @@ spec:
         - containerPort: 8080
         env:
         - name: ENVIRONMENT
-          value: "dev"
+          value: "main"
