@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: simple-app
-  namespace: main
+  namespace: dev
 spec:
   replicas: 1
   selector:
@@ -15,9 +15,9 @@ spec:
     spec:
       containers:
       - name: simple-app
-        image: ghcr.io/jschirad/simple-app:main
+        image: ghcr.io/jschirad/simple-app:dev
         ports:
         - containerPort: 8080
         env:
         - name: ENVIRONMENT
-          value: "main"
+          value: "dev"
