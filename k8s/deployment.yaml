@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: simple-app
-        image: ghcr.io/YOUR_USERNAME/simple-app:dev
+        image: ghcr.io/jschirad/simple-app:main
         ports:
         - containerPort: 8080
         env:
