@@ -29,6 +29,7 @@ jobs:
 
       - name: Build and push Docker image
         run: |
+          echo "Building and pushing image for environment: $ENVIRONMENT"
           docker build -t $IMAGE_NAME:${{ env.ENVIRONMENT }} .
           docker push $IMAGE_NAME:${{ env.ENVIRONMENT }}
 
