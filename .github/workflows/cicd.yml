@@ -35,6 +35,8 @@ jobs:
       - name: Update deployment image
         run: |
           sed -i "s|image: .*|image: $IMAGE_NAME:${{ env.ENVIRONMENT }}|" k8s/deployment.yaml
+          # update namespace
+          sed -i "s|namespace: .*|namespace: ${{ env.ENVIRONMENT }}|" k8s/deployment.yaml
 
       - name: Commit manifest update
         run: |
