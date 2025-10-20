@@ -90,12 +90,8 @@ jobs:
           echo "📝 Updating manifests for environment: $ENVIRONMENT"
           # Update image
           sed -i '' "s|image: .*|image: $IMAGE_NAME:$ENVIRONMENT|" k8s/deployment.yaml
-          # Update namespace
-          sed -i '' "s|namespace: .*|namespace: $ENVIRONMENT|" k8s/deployment.yaml
           # Update environment variable
           sed -i '' "s|value: \".*\"|value: \"$ENVIRONMENT\"|" k8s/deployment.yaml
-          # Update service namespace
-          sed -i '' "s|namespace: .*|namespace: $ENVIRONMENT|" k8s/service.yaml
 
       - name: 💾 Commit manifest updates
         run: |
@@ -124,7 +120,8 @@ jobs:
       - name: 🚀 Deploy to Kubernetes
         run: |
           echo "🚀 Deploying to $ENVIRONMENT environment..."
-          kubectl apply -f k8s/
+          kubectl apply -f k8s/deployment.yaml -n $ENVIRONMENT
+          kubectl apply -f k8s/service.yaml -n $ENVIRONMENT
           echo "✅ Deployment completed for $ENVIRONMENT!"
 
       - name: 📊 Check deployment status
